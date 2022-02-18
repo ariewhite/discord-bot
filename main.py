@@ -7,6 +7,19 @@ from config import settings
 bot = commands.Bot(command_prefix=settings['prefix'])
 
 
+@bot.event
+async def on_ready():
+    print("arie is ready")
+
+
+@bot.event
+async def on_member_join(member):
+    await member.create_dm()
+    await member.dm_channel.send(
+        f'Hello {member.name}!! Welcome to Empire Of Hell'
+    )
+    
+    
 @bot.command()
 async def hello(ctx):
     author = ctx.message.author
